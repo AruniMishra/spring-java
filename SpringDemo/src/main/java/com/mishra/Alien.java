@@ -1,9 +1,18 @@
 package com.mishra;
 
 public class Alien {
+	
+	int age;
+	
+	Alien(){
+		System.out.println("Alien contructor invoked...");
+	}
+	
 
-    void code(){
-        System.out.println("I am coding..");
+	public void code(){
+        System.out.println("\n-----I am coding------");
+        
+        System.out.println("age: "+ age);
     }
 
 }
