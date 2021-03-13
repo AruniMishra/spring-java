@@ -8,7 +8,9 @@
 </head>
 <body>Welcome to Spring Boot MVC
 	
-	Result is: ${sum}
+	<%-- Result is: ${sum} --%>
+	
+	Result is: ${alien}
 	
 </body>
 </html>

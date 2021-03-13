@@ -4,8 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import mishra.aruni.springmvcboot.Model.Alien;
 
 @Controller
 public class HomeController {
@@ -13,11 +18,14 @@ public class HomeController {
 	@RequestMapping("/")
 	public String home() {
 		System.out.println("home controller is requested..");
-		return "index.jsp";
+		return "index";
 	}
 
 
+
+	// using HttpServletRequest
 	/*
+	 *
 	@RequestMapping("add")
 	public String add(HttpServletRequest req) {
 
@@ -34,18 +42,54 @@ public class HomeController {
 
 	}
 	 */
+
+
+	//using @RequestParam
+	/*
 	@RequestMapping("add")
 	public String add(@RequestParam("num1") int num1, @RequestParam("num2")int num2, HttpSession session) {
-
 		int sum= num1 + num2;
 
 		session.setAttribute("sum", sum);
 
-		//return "result.jsp?sum=" +sum;
 		return "result.jsp";
+	}
+	 */
 
+	//using ModelAndView
+	/*
+	@RequestMapping("add")
+	public ModelAndView add(@RequestParam("num1") int num1, @RequestParam("num2")int num2) {
+		ModelAndView mv = new ModelAndView("result");
+		//mv.setViewName("result");
+
+		int sum= num1 + num2;
+		mv.addObject("sum", sum);
+
+		return mv;
+	}
+	 */
+
+	//using Model / ModelMap
+	@RequestMapping("add")
+	public String add(@RequestParam("num1") int num1, @RequestParam("num2")int num2, ModelMap m) {
+
+		int sum= num1 + num2;
+		m.addAttribute("sum", sum);
+
+		return "result";
 	}
 	
+	
+	@RequestMapping("addAlien")
+	public String addAlien(@RequestParam("id") int id, @RequestParam("name")String name, Model model) {
 
+		Alien alien = new Alien();
+		alien.setId(id);
+		alien.setName(name);
+		model.addAttribute("alien", alien);
+		
+		return "result";
+	}
 
 }
