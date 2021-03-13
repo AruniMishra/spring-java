@@ -15,17 +15,21 @@ public class App {
 		/*
 		 * XmlBeanFactory is deprecated
 		 */
-		//BeanFactory bFactory = new XmlBeanFactory(new FileSystemResource("spring.xml"));
-		//Alien obj = (Alien) bFactory.getBean("alien");
+		// BeanFactory bFactory = new XmlBeanFactory(new
+		// FileSystemResource("spring.xml"));
+		// Alien obj = (Alien) bFactory.getBean("alien");
 
-		ApplicationContext appContext  = new ClassPathXmlApplicationContext("spring.xml");
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("spring.xml");
+
+		Alien obj1 = (Alien) appContext.getBean("alien");
+
+		//obj1.setAge(5);
 		
-		/*
-		 * Alien obj1 = (Alien) appContext.getBean("alien"); obj1.age = 5; obj1.code();
-		 * 
-		 * Alien obj2 = (Alien) appContext.getBean("alien"); obj2.code();
-		 * 
-		 */
+		obj1.code();
+
+		System.out.println(obj1.getAge());
+		
+		//obj1.getComputer().compile();
 		
 		((ClassPathXmlApplicationContext) appContext).close();
 	}
