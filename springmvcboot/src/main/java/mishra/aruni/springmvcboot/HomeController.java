@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,16 @@ public class HomeController {
 	public String home() {
 		System.out.println("home controller is requested..");
 		return "index";
+	}
+	
+	
+	/*
+	 * create a generic function to set the attribute to result page 
+	 * irrespective of the path invoked
+	 */
+	@ModelAttribute
+	public void modelData(Model m) {
+		m.addAttribute("name", "Aruni");
 	}
 
 
@@ -79,8 +90,10 @@ public class HomeController {
 
 		return "result";
 	}
-	
-	
+
+
+	//Using Model- adding Alien
+	/*
 	@RequestMapping("addAlien")
 	public String addAlien(@RequestParam("id") int id, @RequestParam("name")String name, Model model) {
 
@@ -88,7 +101,16 @@ public class HomeController {
 		alien.setId(id);
 		alien.setName(name);
 		model.addAttribute("alien", alien);
-		
+
+		return "result";
+	}
+	 */
+
+
+	@RequestMapping("addAlien")
+	// @ModelAttribute is optional if the object name is same as param and in the JSP
+	public String addAlien(@ModelAttribute("alien") Alien a) {
+
 		return "result";
 	}
 
