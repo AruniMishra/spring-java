@@ -9,7 +9,7 @@
 <body>Welcome to Spring Boot MVC
 
 	
-	<form action= "addAlien">
+	<form action= "addAlien" method="post">
 		<!-- Enter value a : <input type="text" name ="num1"><br>
 		Enter value b : <input type="text" name ="num2"><br><br> -->
 		Enter value id : <input type="text" name ="id"><br>

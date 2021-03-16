@@ -1,13 +1,20 @@
 package mishra.aruni.springmvcboot;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,8 +28,8 @@ public class HomeController {
 		System.out.println("home controller is requested..");
 		return "index";
 	}
-	
-	
+
+
 	/*
 	 * create a generic function to set the attribute to result page 
 	 * irrespective of the path invoked
@@ -107,11 +114,25 @@ public class HomeController {
 	 */
 
 
-	@RequestMapping("addAlien")
-	// @ModelAttribute is optional if the object name is same as param and in the JSP
-	public String addAlien(@ModelAttribute("alien") Alien a) {
+	@PostMapping(value="addAlien")
+	//@RequestMapping(value="addAlien", method=RequestMethod.POST)
+	//@ModelAttribute is optional if the object name is same as param and in the JSP
+	public String addAlien(@ModelAttribute Alien alien) {
 
 		return "result";
+	}
+
+	@GetMapping("getAliens")
+	public String getAliens(Model model) {
+
+		List<Alien> alienList = Arrays.asList(new Alien(1, "aruni"), new Alien(2, "mishra"));
+		
+		model.addAttribute("result", alienList);
+
+		//return alienList.toString();
+		
+		return "showAlien";
+
 	}
 
 }
