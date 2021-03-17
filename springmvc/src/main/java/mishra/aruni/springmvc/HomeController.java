@@ -1,16 +1,22 @@
 package mishra.aruni.springmvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mishra.aruni.springmvc.Model.Alien;
+import mishra.aruni.springmvc.dao.AlienDao;
 
 @Controller
 public class HomeController {
+
+	@Autowired
+	AlienDao alieDao;
 
 	@RequestMapping("/")
 	public String home() {
@@ -41,6 +47,12 @@ public class HomeController {
 	}
 
 
+	@GetMapping("getAliens")
+	public String getAliens(Model model) {
+		model.addAttribute("result", alieDao.getAliens());
+
+		return "showAliens";
+	}
 
 	@RequestMapping("addAlien")
 	// @ModelAttribute is optional if the object name is same as param and in the JSP
@@ -48,5 +60,7 @@ public class HomeController {
 
 		return "result";
 	}
+
+
 
 }
