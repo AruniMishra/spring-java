@@ -24,10 +24,21 @@ public class AlienDao {
 
 	@Transactional
 	public List<Alien> getAliens() {
-
 		Session session = sessionFactory.getCurrentSession();
 		List<Alien> aliens = session.createQuery("from alien",Alien.class).list();
-
 		return aliens;
+	}
+
+	@Transactional
+	public void addAlien(Alien a) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(a);
+	}
+
+	@Transactional
+	public Alien getAlien(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Alien alien = session.get(Alien.class, id);
+		return alien;
 	}
 }

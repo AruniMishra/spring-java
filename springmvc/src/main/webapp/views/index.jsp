@@ -15,6 +15,10 @@
 		Enter value id : <input type="text" name ="id"><br>
 		Enter value name : <input type="text" name ="name"><br>
 		<input type= "submit">
+		
+	</form><form action= "getAlien" method="get">
+		Enter value id : <input type="text" name ="id"><br>
+		<input type= "submit">
 	</form>
 	
 	

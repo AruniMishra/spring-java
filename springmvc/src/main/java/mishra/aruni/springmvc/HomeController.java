@@ -54,13 +54,11 @@ public class HomeController {
 		return "showAlien";
 	}
 
-	@RequestMapping("addAlien")
+	@RequestMapping("getAlien")
 	// @ModelAttribute is optional if the object name is same as param and in the JSP
-	public String addAlien(@ModelAttribute("alien") Alien a) {
-
-		return "result";
+	public String addAlien(@RequestParam("id") int id, Model model) {
+		model.addAttribute("result",alieDao.getAlien(id));
+		return "showAlien";
 	}
-
-
 
 }
