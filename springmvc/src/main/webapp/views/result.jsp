@@ -9,7 +9,7 @@
 <body>Welcome to Spring Boot MVC
 	
 	<%-- Result is: ${sum} --%>
-	
+	<br>
 	Result is: ${alien}
 	<br>
 	welcome back: ${name}

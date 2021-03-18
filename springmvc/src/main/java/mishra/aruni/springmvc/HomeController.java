@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mishra.aruni.springmvc.Model.Alien;
 import mishra.aruni.springmvc.dao.AlienDao;
+import mishra.aruni.springmvc.model.Alien;
 
 @Controller
 public class HomeController {
@@ -51,7 +51,7 @@ public class HomeController {
 	public String getAliens(Model model) {
 		model.addAttribute("result", alieDao.getAliens());
 
-		return "showAliens";
+		return "showAlien";
 	}
 
 	@RequestMapping("addAlien")

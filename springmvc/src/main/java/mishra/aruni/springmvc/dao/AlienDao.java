@@ -6,8 +6,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import mishra.aruni.springmvc.Model.Alien;
+import mishra.aruni.springmvc.model.Alien;
 
 /**
  * Alien Data access object
@@ -19,12 +20,13 @@ import mishra.aruni.springmvc.Model.Alien;
 public class AlienDao {
 
 	@Autowired
-	private SessionFactory sessionFactoyry;
+	private SessionFactory sessionFactory;
 
+	@Transactional
 	public List<Alien> getAliens() {
 
-		Session session = sessionFactoyry.getCurrentSession();
-		List<Alien> aliens = session.createQuery("from Alien", Alien.class).list();
+		Session session = sessionFactory.getCurrentSession();
+		List<Alien> aliens = session.createQuery("from alien",Alien.class).list();
 
 		return aliens;
 	}

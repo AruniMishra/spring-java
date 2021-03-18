@@ -1,7 +1,12 @@
-package mishra.aruni.springmvc.Model;
+package mishra.aruni.springmvc.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "alien")
 public class Alien {
 
+	@Id
 	private int id;
 	private String name;
 
@@ -26,6 +31,4 @@ public class Alien {
 		return "Alien [id=" + id + ", name=" + name + "]";
 	}
 
-	
-	
 }
