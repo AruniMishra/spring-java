@@ -23,7 +23,7 @@ import mishra.aruni.springmvcboot.Model.Alien;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	AlienRepo alienRepo;
 
@@ -122,7 +122,7 @@ public class HomeController {
 	//@RequestMapping(value="addAlien", method=RequestMethod.POST)
 	//@ModelAttribute is optional if the object name is same as param and in the JSP
 	public String addAlien(@ModelAttribute Alien alien) {
-		
+
 		alienRepo.save(alien);
 
 		return "result";
@@ -143,7 +143,7 @@ public class HomeController {
 		return "showAlien";
 	}
 	 */
-	
+
 	@GetMapping("getAliens")
 	public String getAliens(Model model) {
 
@@ -151,7 +151,7 @@ public class HomeController {
 
 		return "showAlien";
 	}
-	
+
 	@GetMapping("getAlien")
 	public String getAlien(@RequestParam int id, Model model) {
 
@@ -159,13 +159,14 @@ public class HomeController {
 
 		return "showAlien";
 	}
-	
+
 	@GetMapping("getAlienByName")
 	public String getAlienByName(@RequestParam String name, Model model) {
 
-		model.addAttribute("result", alienRepo.findByNameOrderByIdDesc(name));
+		//model.addAttribute("result", alienRepo.findByNameOrderByIdDesc(name));
+		model.addAttribute("result", alienRepo.find(name));
 
 		return "showAlien";
 	}
-	
+
 }
