@@ -1,7 +1,12 @@
 package mishra.aruni.springmvcboot.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "alien")
 public class Alien {
 
+	@Id
 	private int id;
 	private String name;
 	
@@ -34,6 +39,13 @@ public class Alien {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+
+	/**
+	 * 
+	 */
+	public Alien() {
+		super();
 	}
 	
 }

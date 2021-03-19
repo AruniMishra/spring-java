@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,6 +23,9 @@ import mishra.aruni.springmvcboot.Model.Alien;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	AlienRepo alienRepo;
 
 	@RequestMapping("/")
 	public String home() {
@@ -122,17 +126,28 @@ public class HomeController {
 		return "result";
 	}
 
+
+	//static content
+	/*
 	@GetMapping("getAliens")
 	public String getAliens(Model model) {
 
 		List<Alien> alienList = Arrays.asList(new Alien(1, "aruni"), new Alien(2, "mishra"));
-		
+
 		model.addAttribute("result", alienList);
 
 		//return alienList.toString();
-		
+
 		return "showAlien";
-
 	}
+	 */
+	
+	@GetMapping("getAliens")
+	public String getAliens(Model model) {
 
+		model.addAttribute("result", alienRepo.findAll());
+
+		return "showAlien";
+	}
+	
 }
