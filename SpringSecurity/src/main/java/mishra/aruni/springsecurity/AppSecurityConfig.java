@@ -19,7 +19,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -31,7 +31,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
 
 		return provider;
-
 	}
 
 	/*
