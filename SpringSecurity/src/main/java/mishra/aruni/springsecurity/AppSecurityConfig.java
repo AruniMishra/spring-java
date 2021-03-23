@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -21,10 +22,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableOAuth2Sso
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+
+	/*
+	 * 
+	 * commenting to implement OAuth2Sso
 
 	@Bean
 	public AuthenticationProvider authProvider(){
@@ -53,6 +59,20 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/logout-success").permitAll();
 	}
+
+	 */
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+
+		http
+		.csrf().disable()
+		.authorizeRequests().antMatchers("/login").permitAll()
+		.anyRequest().authenticated();
+
+	}
+
+
 
 
 
