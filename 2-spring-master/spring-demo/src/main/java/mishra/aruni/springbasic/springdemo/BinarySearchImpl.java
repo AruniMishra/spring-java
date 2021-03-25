@@ -4,7 +4,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class BinarySearchImpl {
+
+	@Autowired
+	private SortAlgo sortAlgo;
+
+	/**
+	 * @param sortAlgo
+	 */
+	public BinarySearchImpl(SortAlgo sortAlgo) {
+		super();
+		this.sortAlgo = sortAlgo;
+	}
 
 	public int binarySearch(int[] numbers, int numberToSearch) {
 
@@ -16,15 +31,20 @@ public class BinarySearchImpl {
 		 * System.out.println(sortlist);
 		 */
 
+
+
+
 		//Step 1.sort
-		//bubble sort
-		BubbleSort bubbleSort= new BubbleSort();
-		int[] sortedNumbers= bubbleSort.sort(numbers);
+
+		int[] sortedNumbers= sortAlgo.sort(numbers);
+		System.out.println(sortAlgo);
 
 		//Step 1.search
 
 		return numberToSearch;
 
 	}
+
+
 
 }
