@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class BinarySearchImpl {
 
 	@Autowired
-	private SortAlgo sortAlgo;
+	private SortAlgo bubbleSort;
 	
 	/*
 	 * using setter- optional though
@@ -44,8 +44,8 @@ public class BinarySearchImpl {
 
 		// Step 1.sort
 
-		int[] sortedNumbers = sortAlgo.sort(numbers);
-		System.out.println(sortAlgo);
+		int[] sortedNumbers = bubbleSort.sort(numbers);
+		System.out.println(bubbleSort);
 
 		// Step 1.search
 

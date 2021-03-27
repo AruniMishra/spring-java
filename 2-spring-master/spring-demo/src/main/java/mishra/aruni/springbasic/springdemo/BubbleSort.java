@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
+//@Primary - use by name
 public class BubbleSort implements SortAlgo{
 
 	public int[] sort(int[] numbers) {
