@@ -12,14 +12,25 @@ public class BinarySearchImpl {
 
 	@Autowired
 	private SortAlgo sortAlgo;
-
+	
+	/*
+	 * using setter- optional though
+	 * public void setSortAlgo(SortAlgo sortAlgo) { this.sortAlgo = sortAlgo; }
+	 * 
+	 */
+	
+	
 	/**
+	 * using constructor
+	 * 
 	 * @param sortAlgo
 	 */
+	/*
 	public BinarySearchImpl(SortAlgo sortAlgo) {
 		super();
 		this.sortAlgo = sortAlgo;
 	}
+	 */
 
 	public int binarySearch(int[] numbers, int numberToSearch) {
 
@@ -31,20 +42,15 @@ public class BinarySearchImpl {
 		 * System.out.println(sortlist);
 		 */
 
+		// Step 1.sort
 
-
-
-		//Step 1.sort
-
-		int[] sortedNumbers= sortAlgo.sort(numbers);
+		int[] sortedNumbers = sortAlgo.sort(numbers);
 		System.out.println(sortAlgo);
 
-		//Step 1.search
+		// Step 1.search
 
 		return numberToSearch;
 
 	}
-
-
 
 }
