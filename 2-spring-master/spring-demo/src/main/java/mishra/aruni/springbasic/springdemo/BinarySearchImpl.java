@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BinarySearchImpl {
 
 	@Autowired
-	private SortAlgo bubbleSort;
+	@Qualifier("quick")
+	private SortAlgo sortAlgo;
 	
 	/*
 	 * using setter- optional though
@@ -44,8 +46,8 @@ public class BinarySearchImpl {
 
 		// Step 1.sort
 
-		int[] sortedNumbers = bubbleSort.sort(numbers);
-		System.out.println(bubbleSort);
+		int[] sortedNumbers = sortAlgo.sort(numbers);
+		System.out.println(sortAlgo);
 
 		// Step 1.search
 
