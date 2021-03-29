@@ -1,4 +1,4 @@
-package mishra.aruni.springbasic.springdemo;
+package mishra.aruni.springbasic.springdemo.basic;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;

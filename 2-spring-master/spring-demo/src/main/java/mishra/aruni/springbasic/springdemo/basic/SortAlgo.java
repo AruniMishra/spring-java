@@ -1,4 +1,4 @@
-package mishra.aruni.springbasic.springdemo;
+package mishra.aruni.springbasic.springdemo.basic;
 
 public interface SortAlgo {
 	

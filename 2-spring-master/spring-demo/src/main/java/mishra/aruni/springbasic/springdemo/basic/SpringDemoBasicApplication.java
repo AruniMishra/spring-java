@@ -1,17 +1,20 @@
-package mishra.aruni.springbasic.springdemo;
-
+package mishra.aruni.springbasic.springdemo.basic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class SpringDemoApplication {
+public class SpringDemoBasicApplication {
 
 	public static void main(String[] args) {
 
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringDemoApplication.class, args);
+		ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringDemoBasicApplication.class, args);
 		
 		BinarySearchImpl binarySearchImpl = applicationContext.getBean(BinarySearchImpl.class);
+		BinarySearchImpl binarySearchImpl1 = applicationContext.getBean(BinarySearchImpl.class);
+		
+		System.out.println(binarySearchImpl);
+		System.out.println(binarySearchImpl1);
 
 		
 		
