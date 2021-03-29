@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -12,20 +17,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 //@Scope("prototype")
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class BinarySearchImpl {
+
+	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	@Qualifier("quick")
 	private SortAlgo sortAlgo;
-	
+
 	/*
 	 * using setter- optional though
 	 * public void setSortAlgo(SortAlgo sortAlgo) { this.sortAlgo = sortAlgo; }
 	 * 
 	 */
-	
-	
+
+
 	/**
 	 * using constructor
 	 * 
@@ -56,6 +63,20 @@ public class BinarySearchImpl {
 		// Step 1.search
 
 		return numberToSearch;
+
+	}
+
+	@PostConstruct
+	public void postConstruct() {
+
+		LOGGER.info("----@PostConstruct()----");
+
+	}
+
+	@PreDestroy
+	public void preDestroy() {
+
+		LOGGER.info("----@PreDestroy()----");
 
 	}
 
