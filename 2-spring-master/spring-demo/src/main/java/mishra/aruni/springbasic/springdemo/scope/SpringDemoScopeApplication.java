@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ScopedProxyMode;
 
 @SpringBootApplication
 public class SpringDemoScopeApplication {
@@ -18,8 +19,14 @@ public class SpringDemoScopeApplication {
 		PersonDAO personDAO2 = applicationContext.getBean(PersonDAO.class);
 		
 		LOGGER.info("{}", personDAO);
+		
+		/*
+		 * with ScopedProxyMode.TARGET_CLASS we get unique instances
+		 */
+		LOGGER.info("{}", personDAO.getJdbcConnection());
 		LOGGER.info("{}", personDAO.getJdbcConnection());
 		
+		LOGGER.info("------");
 		LOGGER.info("{}", personDAO2);
 		LOGGER.info("{}", personDAO2.getJdbcConnection());
 

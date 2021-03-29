@@ -2,8 +2,10 @@ package mishra.aruni.springbasic.springdemo.basic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan("mishra.aruni.springbasic.springdemo.basic")
 public class SpringDemoBasicApplication {
 
 	public static void main(String[] args) {
