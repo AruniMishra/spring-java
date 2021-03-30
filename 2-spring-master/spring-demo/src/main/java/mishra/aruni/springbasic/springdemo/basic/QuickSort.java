@@ -1,9 +1,9 @@
 package mishra.aruni.springbasic.springdemo.basic;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @Qualifier("quick")
 public class QuickSort implements SortAlgo {
 
