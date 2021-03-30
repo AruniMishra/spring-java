@@ -6,8 +6,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import mishra.aruni.springbasic.springdemo.cdi.SpringDemoCdiApplication;
-
 @Configuration
 @ComponentScan("mishra.aruni.springbasic.springdemo.scope")
 public class SpringDemoScopeApplication {
