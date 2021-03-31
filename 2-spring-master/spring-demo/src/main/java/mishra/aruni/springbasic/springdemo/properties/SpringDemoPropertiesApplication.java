@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan("mishra.aruni.springbasic.springdemo.properties")
-@PropertySource("classpath: app.properties")
+@PropertySource("classpath:app.properties")
 public class SpringDemoPropertiesApplication {
 
 	public static void main(String[] args) {
