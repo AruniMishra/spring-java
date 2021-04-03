@@ -13,8 +13,6 @@ public class SpringDemoBasicApplication {
 		try (AnnotationConfigApplicationContext annotationConfigApplicationContext = 
 				new AnnotationConfigApplicationContext(SpringDemoBasicApplication.class);) {
 			
-			
-
 			BinarySearchImpl binarySearchImpl = annotationConfigApplicationContext.getBean(BinarySearchImpl.class);
 			System.out.println(binarySearchImpl);
 
