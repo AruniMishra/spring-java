@@ -25,9 +25,7 @@ class CDIBusinessTest {
 	@Test
 	void test() {
 		Mockito.when(cdidao.getData()).thenReturn(new int[] {1,2,4,8,11});
-		int largest = cdiBusiness.findLargest();
-		
-		assertEquals(11, largest);
+		assertEquals(11, cdiBusiness.findLargest());
 	}
 
 }
