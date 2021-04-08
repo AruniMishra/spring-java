@@ -1,8 +1,10 @@
 package mishra.aruni.springbootbasic.SpringBoot.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -32,7 +34,7 @@ public class UserAspect {
 	@AfterReturning(
 			value="execution(* mishra.aruni.springbootbasic.SpringBoot.repo.*.*(..))",
 			returning="result")
-	public void afterRetrning(JoinPoint joinPoint, Object result) {
+	public void afterReturning(JoinPoint joinPoint, Object result) {
 		LOGGER.info("AfterReturning-{} returned with value {}", joinPoint, result);
 	}
 	
@@ -40,6 +42,14 @@ public class UserAspect {
 			value="execution(* mishra.aruni.springbootbasic.SpringBoot.repo.*.*(..))",
 			throwing="exception")
 	public void afterThrowing(JoinPoint joinPoint, Object exception) {
-		LOGGER.info("AfterReturning-{} returned with value {}", joinPoint, exception);
+		LOGGER.info("AfterThrowing-{} returned with value {}", joinPoint, exception);
+	}
+	
+	@Around(value="execution(* mishra.aruni.springbootbasic.SpringBoot.service.*.*(..))")
+	public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		long startTime= System.currentTimeMillis();
+		proceedingJoinPoint.proceed();
+		long timeTaken= System.currentTimeMillis() - startTime;
+		LOGGER.info("Around- Time take by {} returned is {}", proceedingJoinPoint, timeTaken);
 	}
 }
