@@ -17,4 +17,9 @@ public class BeforeAspect {
 	public void before(JoinPoint joinPoint) {
 		LOGGER.info("Before--mishra.aruni.springbootbasic.SpringBoot.repo.*.*(..) invoked - {}", joinPoint);
 	}
+	
+	@Before("execution(* mishra.aruni.springbootbasic.SpringBoot..*.*(..))")
+	public void parentPackage(JoinPoint joinPoint) {
+		LOGGER.info("Before--mishra.aruni.springbootbasic.SpringBoot..*.*(..) invoked - {}", joinPoint);
+	}
 }
