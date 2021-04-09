@@ -72,4 +72,12 @@ public class UserAspect {
 		LOGGER.info("Around- Time take by {} returned is {}", proceedingJoinPoint, timeTaken);
 	}
 	
+	@Around("mishra.aruni.springbootbasic.SpringBoot.aspect.CommonJoinPointConfig.trackTimeAnnotation()")
+	public void aroundTrackTimeAnnotation(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		long startTime= System.currentTimeMillis();
+		proceedingJoinPoint.proceed();
+		long timeTaken= System.currentTimeMillis() - startTime;
+		LOGGER.info("trackTimeAnnotation- Time take by {} returned is {}", proceedingJoinPoint, timeTaken);
+	}
+	
 }
