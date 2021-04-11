@@ -15,9 +15,15 @@ public class PersonJdbc {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	public List<Person> getAll() {
+	public List<Person> findAll() {
 
 		return jdbcTemplate.query("SELECT * FROM PERSON ", new BeanPropertyRowMapper<Person>(Person.class));
+	}
+
+	public Person findById(int id) {
+
+		return jdbcTemplate.queryForObject("SELECT * FROM PERSON WHERE ID=?",
+				new BeanPropertyRowMapper<Person>(Person.class), id);
 	}
 
 }

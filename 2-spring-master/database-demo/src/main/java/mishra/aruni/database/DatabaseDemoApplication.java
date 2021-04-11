@@ -23,6 +23,7 @@ public class DatabaseDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("All users- {}", pesonjdbc.getAll());
+		logger.info("All users- {}", pesonjdbc.findAll());
+		logger.info("find by id- {}", pesonjdbc.findById(10002));
 	}
 }
