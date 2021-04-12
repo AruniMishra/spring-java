@@ -26,4 +26,9 @@ public class PersonJdbc {
 				new BeanPropertyRowMapper<Person>(Person.class), id);
 	}
 
+	public int deletebyId(int id) {
+
+		return jdbcTemplate.update("DELETE FROM PERSON WHERE ID=?", id);
+	}
+
 }

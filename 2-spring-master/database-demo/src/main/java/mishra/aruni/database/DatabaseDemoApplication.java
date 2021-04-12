@@ -25,5 +25,6 @@ public class DatabaseDemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		logger.info("All users- {}", pesonjdbc.findAll());
 		logger.info("find by id- {}", pesonjdbc.findById(10002));
+		logger.info("delete by id- {}", pesonjdbc.deletebyId(10003));
 	}
 }
