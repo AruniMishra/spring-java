@@ -8,8 +8,9 @@ public class Person {
 	private String name;
 	private String location;
 	private Date birthDate;
-	
-	Person (){};
+
+	Person() {
+	};
 
 	/**
 	 * @param id
@@ -61,5 +62,5 @@ public class Person {
 	public String toString() {
 		return "Person [id=" + id + ", name=" + name + ", location=" + location + ", birthDate=" + birthDate + "]";
 	}
-	
+
 }

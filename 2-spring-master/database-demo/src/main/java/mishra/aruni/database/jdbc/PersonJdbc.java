@@ -17,18 +17,30 @@ public class PersonJdbc {
 
 	public List<Person> findAll() {
 
-		return jdbcTemplate.query("SELECT * FROM PERSON ", new BeanPropertyRowMapper<Person>(Person.class));
+		return jdbcTemplate.query("select * from person ", new BeanPropertyRowMapper<Person>(Person.class));
 	}
 
 	public Person findById(int id) {
 
-		return jdbcTemplate.queryForObject("SELECT * FROM PERSON WHERE ID=?",
+		return jdbcTemplate.queryForObject("select * from person where id=?",
 				new BeanPropertyRowMapper<Person>(Person.class), id);
 	}
 
 	public int deletebyId(int id) {
 
-		return jdbcTemplate.update("DELETE FROM PERSON WHERE ID=?", id);
+		return jdbcTemplate.update("delete from person where id=?", id);
+	}
+
+	public int insert(Person person) {
+
+		return jdbcTemplate.update("insert into person values (?, ?, ?, ?)", person.getId(), person.getName(),
+				person.getLocation(), person.getBirthDate());
+	}
+
+	public int update(Person person) {
+
+		return jdbcTemplate.update("update person set name = ?, location = ?, birth_date = ? where id = ? ",
+				person.getName(), person.getLocation(), person.getBirthDate(), person.getId());
 	}
 
 }
