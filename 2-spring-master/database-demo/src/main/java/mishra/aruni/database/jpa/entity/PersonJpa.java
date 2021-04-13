@@ -1,28 +1,33 @@
-package mishra.aruni.database.jdbc.entity;
+package mishra.aruni.database.jpa.entity;
 
 import java.util.Date;
 
-public class Person {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity(name = "person")
+public class PersonJpa {
+
+	@Id
+	@GeneratedValue
 	private int id;
 	private String name;
 	private String location;
 	private Date birthDate;
 
-	public Person() {
+	public PersonJpa() {
 	};
 
 	/**
-	 * for Spring JDBC
+	 * for JPA
 	 * 
-	 * @param id
 	 * @param name
 	 * @param location
 	 * @param birthDate
 	 */
-	public Person(int id, String name, String location, Date birthDate) {
+	public PersonJpa(String name, String location, Date birthDate) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.location = location;
 		this.birthDate = birthDate;

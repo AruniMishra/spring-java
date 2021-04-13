@@ -1,3 +1,5 @@
+/*
+DROP TABLE IF EXISTS person;
 create table person
 (
    id integer not null,
@@ -6,3 +8,4 @@ create table person
    birth_date timestamp,
    primary key(id)
 );
+*/

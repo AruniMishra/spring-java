@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import mishra.aruni.database.jdbc.entity.Person;
 
 @Repository
-public class PersonJdbc {
+public class PersonJdbcRepo {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
