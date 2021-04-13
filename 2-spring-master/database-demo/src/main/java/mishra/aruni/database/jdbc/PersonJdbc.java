@@ -17,7 +17,10 @@ public class PersonJdbc {
 
 	public List<Person> findAll() {
 
-		return jdbcTemplate.query("select * from person ", new BeanPropertyRowMapper<Person>(Person.class));
+		// return jdbcTemplate.query("select * from person ", new BeanPropertyRowMapper<Person>(Person.class));
+		
+		// using custom mapper
+		return jdbcTemplate.query("select * from person ", new PersonRowMapper());
 	}
 
 	public Person findById(int id) {

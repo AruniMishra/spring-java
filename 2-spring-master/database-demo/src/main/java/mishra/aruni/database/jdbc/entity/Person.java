@@ -9,7 +9,7 @@ public class Person {
 	private String location;
 	private Date birthDate;
 
-	Person() {
+	public Person() {
 	};
 
 	/**
