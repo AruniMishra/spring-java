@@ -33,6 +33,20 @@ public class PersonJpa {
 		this.birthDate = birthDate;
 	}
 
+	/**
+	 * @param id
+	 * @param name
+	 * @param location
+	 * @param birthDate
+	 */
+	public PersonJpa(int id, String name, String location, Date birthDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.birthDate = birthDate;
+	}
+
 	public int getId() {
 		return id;
 	}
