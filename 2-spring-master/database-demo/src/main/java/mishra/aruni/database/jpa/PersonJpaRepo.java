@@ -19,14 +19,19 @@ public class PersonJpaRepo {
 
 		return entityManager.find(PersonJpa.class, id);
 	}
-	
+
 	public PersonJpa update(PersonJpa personJpa) {
 
 		return entityManager.merge(personJpa);
 	}
-	
+
 	public PersonJpa insert(PersonJpa personJpa) {
 
 		return entityManager.merge(personJpa);
+	}
+
+	public void deleteById(int id) {
+
+		entityManager.remove(findById(id));
 	}
 }
