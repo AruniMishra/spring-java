@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import mishra.aruni.database.jdbc.entity.Person;
 
-//@SpringBootApplication
+@SpringBootApplication
 public class JdbcDemoApplication implements CommandLineRunner {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
