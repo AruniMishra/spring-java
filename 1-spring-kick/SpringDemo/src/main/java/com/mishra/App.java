@@ -23,14 +23,14 @@ public class App {
 
 		Alien obj1 = (Alien) appContext.getBean("alien");
 
-		//obj1.setAge(5);
-		
+		// obj1.setAge(5);
+
 		obj1.code();
 
 		System.out.println(obj1.getAge());
-		
-		//obj1.getComputer().compile();
-		
+
+		// obj1.getComputer().compile();
+
 		((ClassPathXmlApplicationContext) appContext).close();
 	}
 }

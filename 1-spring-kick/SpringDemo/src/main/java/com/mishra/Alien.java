@@ -5,9 +5,6 @@ public class Alien {
 	private int age;
 	private Computer computer;
 
-
-
-
 	public int getAge() {
 		return age;
 	}
@@ -20,7 +17,6 @@ public class Alien {
 	Alien() {
 		System.out.println("Alien contructor invoked...");
 	}
-
 
 	public void code() {
 
