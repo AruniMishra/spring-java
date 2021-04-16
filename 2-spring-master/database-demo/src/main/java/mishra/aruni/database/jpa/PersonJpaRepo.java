@@ -1,7 +1,10 @@
 package mishra.aruni.database.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -14,6 +17,13 @@ public class PersonJpaRepo {
 
 	@PersistenceContext
 	EntityManager entityManager;
+	
+	public List<PersonJpa> findAll() {
+
+		TypedQuery<PersonJpa> namedQuery = entityManager.createNamedQuery("find_all_person", PersonJpa.class);
+		
+		return namedQuery.getResultList();
+	}
 
 	public PersonJpa findById(int id) {
 
