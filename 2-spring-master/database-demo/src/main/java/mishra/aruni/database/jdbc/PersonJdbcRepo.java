@@ -18,7 +18,7 @@ public class PersonJdbcRepo {
 	public List<Person> findAll() {
 
 		// return jdbcTemplate.query("select * from person ", new BeanPropertyRowMapper<Person>(Person.class));
-		
+
 		// using custom mapper
 		return jdbcTemplate.query("select * from person ", new PersonRowMapper());
 	}

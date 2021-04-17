@@ -17,11 +17,11 @@ public class PersonJpaRepo {
 
 	@PersistenceContext
 	EntityManager entityManager;
-	
+
 	public List<PersonJpa> findAll() {
 
 		TypedQuery<PersonJpa> namedQuery = entityManager.createNamedQuery("find_all_person", PersonJpa.class);
-		
+
 		return namedQuery.getResultList();
 	}
 

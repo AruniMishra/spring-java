@@ -31,6 +31,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		logger.info("update for 10003- {}", pesonJpaRepo.update(new PersonJpa(10003, "D", "delhi", new Date())));
 		logger.info("insert ", pesonJpaRepo.update(new PersonJpa("e", "e", new Date())));
 		pesonJpaRepo.deleteById(10003);
+		logger.info("find all- {} ", pesonJpaRepo.findAll());
 
 	}
 }
