@@ -7,6 +7,6 @@
 <title>welcome</title>
 </head>
 <body>
-welcome!
+welcome! ${name}
 </body>
 </html>

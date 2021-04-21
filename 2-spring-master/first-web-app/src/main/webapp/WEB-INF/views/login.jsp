@@ -6,5 +6,17 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>Hello ${name}
+<%
+System.out.println("welcome " + request.getParameter("name"));
+%>
+
+<body>
+	Hello ${name}
+	<%=request.getParameter("name")%>
+
+	<br>
+	<form action="/login" method="post">
+		Name:<input type="text" name="name"> <br><br> <input
+			type="submit">
+	</form>
 </html>
