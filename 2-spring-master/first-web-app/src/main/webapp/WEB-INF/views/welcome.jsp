@@ -6,6 +6,9 @@
 <meta charset="ISO-8859-1">
 <title>welcome</title>
 </head>
+<%
+System.out.println("welcome " + request.getParameter("name"));
+%>
 <body>
 welcome! ${name}
 </body>
