@@ -6,16 +6,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 2238069719277990176L;
 
+    private UserValidationService userValidationService = new UserValidationService();
+
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String nameParameter = httpServletRequest.getParameter("name");
-        System.out.println(nameParameter);
         httpServletRequest.setAttribute("name", nameParameter);
         httpServletRequest.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(httpServletRequest, httpServletResponse);
     }
@@ -23,7 +23,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String nameParameter = httpServletRequest.getParameter("name");
-        httpServletRequest.setAttribute("name", nameParameter);
-        httpServletRequest.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(httpServletRequest, httpServletResponse);
+        String passwordParameter = httpServletRequest.getParameter("password");
+        boolean userValid = userValidationService.isUserValid(nameParameter, passwordParameter);
+
+        if (userValid) {
+            httpServletRequest.setAttribute("name", nameParameter);
+            httpServletRequest.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(httpServletRequest, httpServletResponse);
+        }
+        else{
+            httpServletRequest.setAttribute("error", "invalid credentials");
+            httpServletRequest.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(httpServletRequest, httpServletResponse);
+        }
     }
 }

@@ -13,7 +13,9 @@
 
 	<br>
 	<form action="/login" method="post">
-		Name:<input type="text" name="name"> <br><br> <input
-			type="submit">
+	<p>${error}</p>
+		Name:<input type="text" name="name"> <br><br>
+		Password:<input type="password" name="password"> <br><br> <input
+        			type="submit">
 	</form>
 </html>
