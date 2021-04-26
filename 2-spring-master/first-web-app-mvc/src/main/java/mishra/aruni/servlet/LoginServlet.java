@@ -15,8 +15,6 @@ public class LoginServlet extends HttpServlet {
     private LoginService loginService = new LoginService();
 
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        String nameParameter = httpServletRequest.getParameter("name");
-        httpServletRequest.setAttribute("name", nameParameter);
         httpServletRequest.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(httpServletRequest, httpServletResponse);
     }
 
