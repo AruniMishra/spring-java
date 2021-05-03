@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoginController {
 
     @RequestMapping(value="/login")
-    @ResponseBody
+    //@ResponseBody
     public String hello(){
-        return "Hello world";
+        return "login";
     }
 }
