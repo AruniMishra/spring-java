@@ -123,10 +123,19 @@ public class HomeController {
 	//@ModelAttribute is optional if the object name is same as param and in the JSP
 	public String addAlien(@ModelAttribute Alien alien) {
 
-		alienRepo.save(alien);
-
 		return "result";
 	}
+
+	
+	// @PostMapping(value="addAlien")
+	// //@RequestMapping(value="addAlien", method=RequestMethod.POST)
+	// //@ModelAttribute is optional if the object name is same as param and in the JSP
+	// public String addAlien(@ModelAttribute Alien alien) {
+
+	// 	alienRepo.save(alien);
+
+	// 	return "result";
+	// }
 
 
 	//static content
