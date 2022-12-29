@@ -20,7 +20,7 @@ public class AlienController {
 	@Autowired
 	AlienRepo alienRepo;
 
-	@GetMapping(path="aliens", produces = {"application/json"})
+	@GetMapping(path = "aliens", produces = { "application/json" })
 	@ResponseBody
 	public List<Alien> getAliens() {
 		List<Alien> aliens = alienRepo.findAll();
@@ -36,7 +36,7 @@ public class AlienController {
 		return alien;
 	}
 
-	@PostMapping(path= "alien", consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(path = "alien", consumes = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody
 	public Alien addAlien(@RequestBody Alien alien) {
 		alienRepo.save(alien);
