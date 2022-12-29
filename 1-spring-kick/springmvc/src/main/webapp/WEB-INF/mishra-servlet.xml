@@ -32,7 +32,7 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		<property name="jdbcUrl"
 			value="jdbc:mysql://localhost:3306/mishra"></property>
 		<property name="user" value="root"></property>
-		<property name="password" value="12345678"></property>
+		<property name="password" value="pass123"></property>
 
 		<property name="minPoolSize" value="5" />
 		<property name="maxPoolSize" value="10" />
