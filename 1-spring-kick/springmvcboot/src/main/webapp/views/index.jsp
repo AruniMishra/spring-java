@@ -18,6 +18,13 @@
 			type="submit">
 	</form>
 
+	<hr>
+	Search all aliens:
+	<br>
+	<form action="getAliens" method="get">
+		<input type="submit">
+	</form>
+
 
 	<hr>
 	Search by id:

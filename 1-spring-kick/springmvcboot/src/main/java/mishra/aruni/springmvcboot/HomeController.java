@@ -118,6 +118,8 @@ public class HomeController {
 	 */
 
 
+
+	/*
 	@PostMapping(value="addAlien")
 	//@RequestMapping(value="addAlien", method=RequestMethod.POST)
 	//@ModelAttribute is optional if the object name is same as param and in the JSP
@@ -125,17 +127,17 @@ public class HomeController {
 
 		return "result";
 	}
-
+	*/
 	
-	// @PostMapping(value="addAlien")
-	// //@RequestMapping(value="addAlien", method=RequestMethod.POST)
-	// //@ModelAttribute is optional if the object name is same as param and in the JSP
-	// public String addAlien(@ModelAttribute Alien alien) {
+	@PostMapping(value="addAlien")
+	//@RequestMapping(value="addAlien", method=RequestMethod.POST)
+	//@ModelAttribute is optional if the object name is same as param and in the JSP
+	public String addAlien(@ModelAttribute Alien alien) {
 
-	// 	alienRepo.save(alien);
+		alienRepo.save(alien);
 
-	// 	return "result";
-	// }
+		return "result";
+	}
 
 
 	//static content
@@ -151,7 +153,7 @@ public class HomeController {
 
 		return "showAlien";
 	}
-	 */
+	*/
 
 	@GetMapping("getAliens")
 	public String getAliens(Model model) {
