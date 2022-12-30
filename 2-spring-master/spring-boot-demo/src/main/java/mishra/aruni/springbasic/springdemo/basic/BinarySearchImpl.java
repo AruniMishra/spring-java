@@ -27,7 +27,7 @@ public class BinarySearchImpl {
 	private SortAlgo sortAlgo;
 
 	/*
-	 * using setter- optional though
+	 * using setter- optional though, both constructor and setter can be skiped.
 	 * public void setSortAlgo(SortAlgo sortAlgo) { this.sortAlgo = sortAlgo; }
 	 * 
 	 */
