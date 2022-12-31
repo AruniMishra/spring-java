@@ -17,14 +17,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 //@Scope("prototype")
-@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class BinarySearchImpl {
 
 	private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	@Qualifier("quick")
-	private SortAlgo sortAlgo;
+	/*
+	 * by using qualifier
+	 */
+	// @Qualifier("quick")
+	// private SortAlgo sortAlgo;
+
+	/*
+	 * by using Name
+	 */
+	private SortAlgo bubbleSort;
 
 	/*
 	 * using setter- optional though, both constructor and setter can be skiped.
@@ -57,8 +65,8 @@ public class BinarySearchImpl {
 
 		// Step 1.sort
 
-		int[] sortedNumbers = sortAlgo.sort(numbers);
-		System.out.println(sortAlgo);
+		int[] sortedNumbers = bubbleSort.sort(numbers);
+		System.out.println(bubbleSort);
 
 		// Step 1.search
 
