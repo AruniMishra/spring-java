@@ -18,12 +18,13 @@ public class SpringDemoScopeApplication {
 		PersonDAO personDAO = applicationContext.getBean(PersonDAO.class);
 		PersonDAO personDAO2 = applicationContext.getBean(PersonDAO.class);
 		
-		//LOGGER.info("{}", personDAO);
+		
 		
 		/*
 		 * with ScopedProxyMode.TARGET_CLASS we get unique instances
 		 */
 		LOGGER.info("{}", personDAO);
+		LOGGER.info("{}", personDAO.getJdbcConnection());
 		LOGGER.info("{}", personDAO.getJdbcConnection());
 		
 		LOGGER.info("------");
