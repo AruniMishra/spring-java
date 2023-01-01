@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Qualifier("bubble")
-//@Primary - use by name - Primary takes more priority then by Name
+//@Primary - use by name - Primary takes more priority than by Name
 public class BubbleSort implements SortAlgo{
 
 	public int[] sort(int[] numbers) {
