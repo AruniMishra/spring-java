@@ -10,12 +10,22 @@ public class Alien {
 	}
 
 	public void setAge(int age) {
-		System.out.println("Age is assigned");
+		System.out.println("Age is assigned using setter");
 		this.age = age;
 	}
 
+	/*
+	 * using property name="age"
+	 */
 	Alien() {
-		System.out.println("Alien contructor invoked...");
+		System.out.println("Alien default contructor invoked...");
+	}
+
+	/*
+	 * using constructor-arg
+	 */
+	public Alien(int age) {
+		this.age = age;
 	}
 
 	public void code() {
