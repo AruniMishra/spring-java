@@ -25,7 +25,7 @@ public class JdbcDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("All users- {}", pesonJdbcRepo.findAll());
+		logger.info("JDBC All users- {}", pesonJdbcRepo.findAll());
 		logger.info("find by id- {}", pesonJdbcRepo.findById(10002));
 		logger.info("delete by id- {}", pesonJdbcRepo.deletebyId(10003));
 		logger.info("insert Person- {}", pesonJdbcRepo.insert(new Person(10004, "D", "D", new Date())));
