@@ -39,4 +39,5 @@ select * from person;
 ```
 
 ## note:
-adding data.sql, schema.sql & import.sql to resources folder never worked.
+- spring.jpa.hibernate.ddl-auto=create then no need to create table manually
+- adding data.sql, schema.sql & import.sql to resources folder never worked.
