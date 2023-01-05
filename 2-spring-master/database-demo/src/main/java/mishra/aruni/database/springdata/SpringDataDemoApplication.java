@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import mishra.aruni.database.springdata.entity.PersonSpringData;
 
 @SpringBootApplication
-
 public class SpringDataDemoApplication implements CommandLineRunner {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -29,7 +28,8 @@ public class SpringDataDemoApplication implements CommandLineRunner {
 
 		logger.info("-----------SpringDataDemoApplication-----------");
 		logger.info("find by id- {}", personSpringDataRepo.findById(10001));
-		logger.info("update for 10003- {}", personSpringDataRepo.save(new PersonSpringData(10003, "D", "delhi", new Date())));
+		logger.info("update for 10003- {}",
+				personSpringDataRepo.save(new PersonSpringData(10003, "D", "delhi", new Date())));
 		logger.info("insert ", personSpringDataRepo.save(new PersonSpringData("e", "e", new Date())));
 		personSpringDataRepo.deleteById(10002);
 		logger.info("find all- {} ", personSpringDataRepo.findAll());
