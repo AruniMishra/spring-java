@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity(name = "person")
-@NamedQuery(name="find_all_person", query= "select person from person person")
 public class PersonSpringData {
 
 	@Id
