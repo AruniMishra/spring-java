@@ -2,11 +2,8 @@ package mishra.aruni.database.springdata.entity;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity(name = "person")
 @NamedQuery(name="find_all_person", query= "select person from person person")
