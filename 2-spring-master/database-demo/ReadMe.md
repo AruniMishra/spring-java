@@ -1,37 +1,28 @@
-# ms sql
+# Azure sql edge
 
 ## start docker
 
  ```bash
- docker run --name mishra -e MYSQL_ROOT_PASSWORD=pass123 -dp 3306:3306 --rm mysql
- docker exec -it mishra mysql -uroot -p
+sudo docker run --cap-add SYS_PTRACE -e 'ACCEPT_EULA=1' -e 'MSSQL_SA_PASSWORD=YourStrong@Passw0rd' -e 'MSSQL_PID=Premium' -p 1433:1433 --name azuresqledge -d mcr.microsoft.com/azure-sql-edge
+
+sudo docker exec -it azuresqledge "bash"
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA
  ```
 
-## excute manually
+## Azure SQL Data Studio
+
+- 127.0.0.1 : Advance>Port:1433
 
  ```sql
-create database mishra;
+CREATE DATABASE tempdb;
+GO
 
-use mishra;
 
-create table person
-(
-   id integer not null,
-   name varchar(255) not null,
-   location varchar(255),
-   birth_date timestamp,
-   primary key(id)
-);
+SELECT name from sys.databases;
+GO
 
-ALTER TABLE `person` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL AUTO_INCREMENT ;
-
-INSERT INTO person (ID, NAME, LOCATION, BIRTH_DATE ) 
-VALUES(10001,  'Aruni', 'Delhi',sysdate());
-INSERT INTO person (ID, NAME, LOCATION, BIRTH_DATE ) 
-VALUES(10002,  'Mishra', 'India',sysdate());
-INSERT INTO person (ID, NAME, LOCATION, BIRTH_DATE ) 
-VALUES(10003,  'C', 'C',sysdate());
+USE tempdb;
 
 
 select * from person;
@@ -39,5 +30,3 @@ select * from person;
 ```
 
 ## note:
-- spring.jpa.hibernate.ddl-auto=create then no need to create table manually
-- adding data.sql, schema.sql & import.sql to resources folder never worked.
