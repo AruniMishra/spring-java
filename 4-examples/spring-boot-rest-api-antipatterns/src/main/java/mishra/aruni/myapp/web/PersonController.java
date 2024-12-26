@@ -1,44 +1,51 @@
 package mishra.aruni.myapp.web;
 
 import mishra.aruni.myapp.entities.Person;
+import mishra.aruni.myapp.models.PagedResult;
 import mishra.aruni.myapp.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/person")
 public class PersonController {
 
     @Autowired
-    private PersonService personService;
+    private final PersonService personService;
 
-    @GetMapping("/api/get-all-persons")
-    public List<Person> getAllPersons() {
-        return personService.getAllPersons();
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
-    @GetMapping("/api/get-person-by-id/{id}")
+    // @GetMapping
+    // public List<Person> getAllPersons() {
+    //     return personService.getAllPersons(pageNo);
+    // }
+
+    @GetMapping
+    public PagedResult<Person> getAllPersons(@RequestParam("1") int pageNo) {
+        return personService.getAllPersons(pageNo);
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable Long id) {
         return personService.getPersonById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/api/create-person")
-    public Person createPerson(@RequestBody @Validated Person person) {
-        return personService.createPerson(person);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    // public Person createPerson(@RequestBody @Validated Person person) {
+    public ResponseEntity<Person> createPerson(@RequestBody @Validated Person person) {
+        // return personService.createPerson(person);
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(person));
     }
 
-    @PutMapping("/api/update-person/{id}")
+    @PutMapping("/{id}")
     public Person updatePerson(
             @PathVariable Long id,
             @RequestBody @Validated Person person) {
@@ -46,7 +53,7 @@ public class PersonController {
         return personService.updatePerson(person);
     }
 
-    @DeleteMapping("/api/delete-person/{id}")
+    @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable Long id) {
         personService.deletePerson(id);
     }

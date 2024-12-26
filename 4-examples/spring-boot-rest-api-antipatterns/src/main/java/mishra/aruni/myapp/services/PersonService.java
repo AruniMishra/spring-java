@@ -1,24 +1,44 @@
 package mishra.aruni.myapp.services;
 
 import mishra.aruni.myapp.entities.Person;
+import mishra.aruni.myapp.models.PagedResult;
 import mishra.aruni.myapp.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
 public class PersonService {
     @Autowired
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
-    public List<Person> getAllPersons() {
-        return personRepository.findAll()
-                .stream().filter(Person::isActive)
-                .toList();
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
+    }
+
+    // public List<Person> getAllPersons() {
+    //     return personRepository.findAll()
+    //             .stream().filter(Person::isActive)
+    //             .toList();
+    // }
+
+    // pagination
+    public PagedResult<Person> getAllPersons(int pageNo) {
+        Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("id").ascending());
+
+        Page<Person> personPage = personRepository.findAll(pageable);
+
+        return new PagedResult<>(personPage.getContent(),
+                personPage.getTotalElements(),
+                personPage.getTotalPages(),
+                personPage.getNumber() + 1);
     }
 
     public Optional<Person> getPersonById(Long id) {

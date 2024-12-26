@@ -35,7 +35,7 @@ class PersonControllerTest {
 
         given(personService.getPersonById(1L)).willReturn(Optional.of(person));
 
-        mockMvc.perform(get("/api/get-person-by-id/1"))
+        mockMvc.perform(get("/api/person/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("John"))

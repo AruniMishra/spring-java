@@ -1,7 +1,7 @@
-
 package mishra.aruni.myapp.services;
 
 import mishra.aruni.myapp.entities.Person;
+import mishra.aruni.myapp.models.PagedResult;
 import mishra.aruni.myapp.repositories.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,10 +9,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,16 +45,6 @@ public class PersonServiceTest {
         person2.setActive(false);
     }
 
-    @Test
-    public void testGetAllPersons() {
-        when(personRepository.findAll()).thenReturn(Arrays.asList(person1, person2));
-
-        List<Person> result = personService.getAllPersons();
-
-        assertEquals(1, result.size());
-        assertTrue(result.contains(person1));
-        assertFalse(result.contains(person2));
-    }
 
     @Test
     public void testGetPersonById() {
@@ -95,5 +92,47 @@ public class PersonServiceTest {
 
         assertTrue(result.isPresent());
         assertEquals(person1, result.get());
+    }
+
+    @Test
+    public void testGetAllPersons_FirstPage() {
+        List<Person> persons = Arrays.asList(person1, person2);
+        Page<Person> personPage = new PageImpl<>(persons);
+
+        when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
+
+        PagedResult<Person> result = personService.getAllPersons(1);
+
+        assertEquals(1, result.pageNumber());
+        assertEquals(1, result.totalPages());
+        assertEquals(2, result.totalElements());
+    }
+
+    @Test
+    public void testGetAllPersons_EmptyPage() {
+        List<Person> persons = Arrays.asList();
+        Page<Person> personPage = new PageImpl<>(persons);
+
+        when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
+
+        PagedResult<Person> result = personService.getAllPersons(1);
+
+        assertEquals(1, result.pageNumber());
+        assertEquals(1, result.totalPages());
+        assertEquals(0, result.totalElements());
+    }
+
+    @Test
+    public void testGetAllPersons_MultiplePages() {
+        List<Person> persons = Arrays.asList(person1, person2);
+        Page<Person> personPage = new PageImpl<>(persons, PageRequest.of(0, 10), 20);
+
+        when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
+
+        PagedResult<Person> result = personService.getAllPersons(1);
+
+        assertEquals(1, result.pageNumber());
+        assertEquals(2, result.totalPages());
+        assertEquals(20, result.totalElements());
     }
 }
