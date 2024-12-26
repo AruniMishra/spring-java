@@ -23,3 +23,8 @@ Spring Boot REST API development.
     * Hexagonal
     * Ports & Adapters
     * Clean Code
+
+# swager
+- [SwaggerUI](http://localhost:8080/swagger-ui.html)
+- [Yaml](http://localhost:8080/v3/api-docs.yaml)
+- [api-docs](http://localhost:8080/v3/api-docs)
