@@ -1,7 +1,10 @@
 package mishra.aruni.myapp.web;
 
 import mishra.aruni.myapp.entities.Person;
+import mishra.aruni.myapp.models.CreatePersonRequest;
 import mishra.aruni.myapp.models.PagedResult;
+import mishra.aruni.myapp.models.UpdatePersonRequest;
+import mishra.aruni.myapp.models.UpdatePersonWebRequest;
 import mishra.aruni.myapp.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,20 +40,41 @@ public class PersonController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // @PostMapping
+    // @ResponseStatus(HttpStatus.CREATED)
+    // // public Person createPerson(@RequestBody @Validated Person person) {
+    // public ResponseEntity<Person> createPerson(@RequestBody @Validated Person person) {
+    //     // return personService.createPerson(person);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(person));
+    // }
+
+
+    // specific payload
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    // public Person createPerson(@RequestBody @Validated Person person) {
-    public ResponseEntity<Person> createPerson(@RequestBody @Validated Person person) {
+    public ResponseEntity<Person> createPerson(@RequestBody @Validated CreatePersonRequest request) {
         // return personService.createPerson(person);
-        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(person));
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(request));
     }
 
+    // @PutMapping("/{id}")
+    // public Person updatePerson(
+    //         @PathVariable Long id,
+    //         @RequestBody @Validated Person person) {
+    //     person.setId(id);
+    //     return personService.updatePerson(person);
+    // }
+
+
+    // specific payload
     @PutMapping("/{id}")
     public Person updatePerson(
             @PathVariable Long id,
-            @RequestBody @Validated Person person) {
-        person.setId(id);
-        return personService.updatePerson(person);
+            @RequestBody @Validated UpdatePersonWebRequest request) {
+        UpdatePersonRequest updatePersonRequest =
+                new UpdatePersonRequest(id, request.name(), request.dob());
+
+        return personService.updatePerson(updatePersonRequest);
     }
 
     @DeleteMapping("/{id}")

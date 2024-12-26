@@ -1,7 +1,9 @@
 package mishra.aruni.myapp.services;
 
 import mishra.aruni.myapp.entities.Person;
+import mishra.aruni.myapp.models.CreatePersonRequest;
 import mishra.aruni.myapp.models.PagedResult;
+import mishra.aruni.myapp.models.UpdatePersonRequest;
 import mishra.aruni.myapp.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,11 +47,29 @@ public class PersonService {
         return personRepository.findById(id);
     }
 
-    public Person createPerson(Person person) {
+    // public Person createPerson(Person person) {
+    //     return personRepository.save(person);
+    // }
+
+    // specific payload
+    public Person createPerson(CreatePersonRequest request) {
+        Person person = new Person(request.name(),
+                request.email(), request.password(),
+                request.dob(), true, request.phones());
+
         return personRepository.save(person);
     }
 
-    public Person updatePerson(Person person) {
+    // public Person updatePerson(Person person) {
+    //     return personRepository.save(person);
+    // }
+
+    // specific payload
+    public Person updatePerson(UpdatePersonRequest request) {
+        Person person = personRepository.findById(request.id())
+                .orElseThrow(() -> new RuntimeException("Person not found"));
+        person.setName(request.name());
+        person.setDob(request.dob());
         return personRepository.save(person);
     }
 

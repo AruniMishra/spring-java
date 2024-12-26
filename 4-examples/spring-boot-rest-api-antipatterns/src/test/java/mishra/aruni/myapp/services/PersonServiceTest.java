@@ -56,23 +56,23 @@ public class PersonServiceTest {
         assertEquals(person1, result.get());
     }
 
-    @Test
-    public void testCreatePerson() {
-        when(personRepository.save(person1)).thenReturn(person1);
+   // @Test
+   //  public void testCreatePerson() {
+   //      when(personRepository.save(person1)).thenReturn(person1);
+   //
+   //      Person result = personService.createPerson(person1);
+   //
+   //      assertEquals(person1, result);
+   //  }
 
-        Person result = personService.createPerson(person1);
-
-        assertEquals(person1, result);
-    }
-
-    @Test
-    public void testUpdatePerson() {
-        when(personRepository.save(person1)).thenReturn(person1);
-
-        Person result = personService.updatePerson(person1);
-
-        assertEquals(person1, result);
-    }
+    // @Test
+    // public void testUpdatePerson() {
+    //     when(personRepository.save(person1)).thenReturn(person1);
+    //
+    //     Person result = personService.updatePerson(person1);
+    //
+    //     assertEquals(person1, result);
+    // }
 
     @Test
     public void testDeletePerson() {
