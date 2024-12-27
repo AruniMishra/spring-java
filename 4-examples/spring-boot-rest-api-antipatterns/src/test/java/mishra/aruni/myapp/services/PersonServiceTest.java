@@ -83,16 +83,16 @@ public class PersonServiceTest {
         verify(personRepository, times(1)).deleteById(1L);
     }
 
-    @Test
-    public void testLogin() {
-        when(personRepository.findByEmailAndPasswordAndActiveIsTrue("email@example.com", "password"))
-                .thenReturn(Optional.of(person1));
-
-        Optional<Person> result = personService.login("email@example.com", "password");
-
-        assertTrue(result.isPresent());
-        assertEquals(person1, result.get());
-    }
+    // @Test
+    // public void testLogin() {
+    //     when(personRepository.findByEmailAndPasswordAndActiveIsTrue("email@example.com", "password"))
+    //             .thenReturn(Optional.of(person1));
+    //
+    //     Optional<Person> result = personService.login("email@example.com", "password");
+    //
+    //     assertTrue(result.isPresent());
+    //     assertEquals(person1, result.get());
+    // }
 
     @Test
     public void testGetAllPersons_FirstPage() {

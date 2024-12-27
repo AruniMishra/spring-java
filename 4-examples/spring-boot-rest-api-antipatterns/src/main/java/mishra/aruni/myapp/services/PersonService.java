@@ -78,6 +78,9 @@ public class PersonService {
     }
 
     public Optional<Person> login(String email, String password) {
-        return personRepository.findByEmailAndPasswordAndActiveIsTrue(email, password);
+        // return personRepository.findByEmailAndPasswordAndActiveIsTrue(email, password);
+
+        // fix - findByEmailAndPasswordAndActiveIsTrue
+        return personRepository.login(email, password);
     }
 }
