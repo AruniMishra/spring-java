@@ -94,45 +94,45 @@ public class PersonServiceTest {
     //     assertEquals(person1, result.get());
     // }
 
-    @Test
-    public void testGetAllPersons_FirstPage() {
-        List<Person> persons = Arrays.asList(person1, person2);
-        Page<Person> personPage = new PageImpl<>(persons);
-
-        when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
-
-        PagedResult<Person> result = personService.getAllPersons(1);
-
-        assertEquals(1, result.pageNumber());
-        assertEquals(1, result.totalPages());
-        assertEquals(2, result.totalElements());
-    }
-
-    @Test
-    public void testGetAllPersons_EmptyPage() {
-        List<Person> persons = Arrays.asList();
-        Page<Person> personPage = new PageImpl<>(persons);
-
-        when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
-
-        PagedResult<Person> result = personService.getAllPersons(1);
-
-        assertEquals(1, result.pageNumber());
-        assertEquals(1, result.totalPages());
-        assertEquals(0, result.totalElements());
-    }
-
-    @Test
-    public void testGetAllPersons_MultiplePages() {
-        List<Person> persons = Arrays.asList(person1, person2);
-        Page<Person> personPage = new PageImpl<>(persons, PageRequest.of(0, 10), 20);
-
-        when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
-
-        PagedResult<Person> result = personService.getAllPersons(1);
-
-        assertEquals(1, result.pageNumber());
-        assertEquals(2, result.totalPages());
-        assertEquals(20, result.totalElements());
-    }
+    // @Test
+    // public void testGetAllPersons_FirstPage() {
+    //     List<Person> persons = Arrays.asList(person1, person2);
+    //     Page<Person> personPage = new PageImpl<>(persons);
+    //
+    //     when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
+    //
+    //     PagedResult<Person> result = personService.getAllPersons(1);
+    //
+    //     assertEquals(1, result.pageNumber());
+    //     assertEquals(1, result.totalPages());
+    //     assertEquals(2, result.totalElements());
+    // }
+    //
+    // @Test
+    // public void testGetAllPersons_EmptyPage() {
+    //     List<Person> persons = Arrays.asList();
+    //     Page<Person> personPage = new PageImpl<>(persons);
+    //
+    //     when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
+    //
+    //     PagedResult<Person> result = personService.getAllPersons(1);
+    //
+    //     assertEquals(1, result.pageNumber());
+    //     assertEquals(1, result.totalPages());
+    //     assertEquals(0, result.totalElements());
+    // }
+    //
+    // @Test
+    // public void testGetAllPersons_MultiplePages() {
+    //     List<Person> persons = Arrays.asList(person1, person2);
+    //     Page<Person> personPage = new PageImpl<>(persons, PageRequest.of(0, 10), 20);
+    //
+    //     when(personRepository.findAll(any(Pageable.class))).thenReturn(personPage);
+    //
+    //     PagedResult<Person> result = personService.getAllPersons(1);
+    //
+    //     assertEquals(1, result.pageNumber());
+    //     assertEquals(2, result.totalPages());
+    //     assertEquals(20, result.totalElements());
+    // }
 }

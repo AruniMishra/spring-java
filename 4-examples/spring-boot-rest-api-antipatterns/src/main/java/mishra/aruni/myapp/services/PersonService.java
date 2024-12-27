@@ -3,6 +3,7 @@ package mishra.aruni.myapp.services;
 import mishra.aruni.myapp.entities.Person;
 import mishra.aruni.myapp.models.CreatePersonRequest;
 import mishra.aruni.myapp.models.PagedResult;
+import mishra.aruni.myapp.models.PersonBasicView;
 import mishra.aruni.myapp.models.UpdatePersonRequest;
 import mishra.aruni.myapp.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,23 @@ public class PersonService {
     // }
 
     // pagination
-    public PagedResult<Person> getAllPersons(int pageNo) {
+    // public PagedResult<Person> getAllPersons(int pageNo) {
+    //     Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("id").ascending());
+    //
+    //     Page<Person> personPage = personRepository.findAll(pageable);
+    //
+    //     return new PagedResult<>(personPage.getContent(),
+    //             personPage.getTotalElements(),
+    //             personPage.getTotalPages(),
+    //             personPage.getNumber() + 1);
+    // }
+
+
+    // fix - Loading entire entities and using only a small subset of fields
+    public PagedResult<PersonBasicView> getAllPersons(int pageNo) {
         Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("id").ascending());
 
-        Page<Person> personPage = personRepository.findAll(pageable);
+        Page<PersonBasicView> personPage = personRepository.findAllBy(pageable);
 
         return new PagedResult<>(personPage.getContent(),
                 personPage.getTotalElements(),

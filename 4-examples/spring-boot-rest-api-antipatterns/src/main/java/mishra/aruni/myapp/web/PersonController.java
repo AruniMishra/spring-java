@@ -1,10 +1,7 @@
 package mishra.aruni.myapp.web;
 
 import mishra.aruni.myapp.entities.Person;
-import mishra.aruni.myapp.models.CreatePersonRequest;
-import mishra.aruni.myapp.models.PagedResult;
-import mishra.aruni.myapp.models.UpdatePersonRequest;
-import mishra.aruni.myapp.models.UpdatePersonWebRequest;
+import mishra.aruni.myapp.models.*;
 import mishra.aruni.myapp.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/person")
+@RequestMapping("/api/persons")
 public class PersonController {
 
     @Autowired
@@ -29,7 +26,7 @@ public class PersonController {
     // }
 
     @GetMapping
-    public PagedResult<Person> getAllPersons(@RequestParam("1") int pageNo) {
+    public PagedResult<PersonBasicView> getAllPersons(@RequestParam(defaultValue = "1") int pageNo) {
         return personService.getAllPersons(pageNo);
     }
 
