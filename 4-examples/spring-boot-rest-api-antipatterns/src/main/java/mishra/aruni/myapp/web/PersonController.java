@@ -20,14 +20,22 @@ public class PersonController {
         this.personService = personService;
     }
 
-    // @GetMapping
-    // public List<Person> getAllPersons() {
-    //     return personService.getAllPersons(pageNo);
-    // }
+    /*
+     @GetMapping
+     public List<Person> getAllPersons() {
+         return personService.getAllPersons(pageNo);
+     }
+    */
 
     @GetMapping
     public PagedResult<PersonBasicView> getAllPersons(@RequestParam(defaultValue = "1") int pageNo) {
         return personService.getAllPersons(pageNo);
+    }
+
+    // N+1 demonstration
+    @GetMapping("/all")
+    public PagedResult<Person> getAllPersonsAll(@RequestParam(defaultValue = "1") int pageNo) {
+        return personService.getAllPersonsEntities(pageNo);
     }
 
     @GetMapping("/{id}")
@@ -37,13 +45,15 @@ public class PersonController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // @PostMapping
-    // @ResponseStatus(HttpStatus.CREATED)
-    // // public Person createPerson(@RequestBody @Validated Person person) {
-    // public ResponseEntity<Person> createPerson(@RequestBody @Validated Person person) {
-    //     // return personService.createPerson(person);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(person));
-    // }
+    /*
+     @PostMapping
+     @ResponseStatus(HttpStatus.CREATED)
+     // public Person createPerson(@RequestBody @Validated Person person) {
+     public ResponseEntity<Person> createPerson(@RequestBody @Validated Person person) {
+         // return personService.createPerson(person);
+         return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(person));
+     }
+    */
 
 
     // specific payload

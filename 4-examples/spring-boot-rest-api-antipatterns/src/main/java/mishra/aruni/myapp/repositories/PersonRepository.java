@@ -18,4 +18,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     // fix - Loading entire entities and using only a small subset of fields
     Page<PersonBasicView> findAllBy(Pageable pageable);
+
+    // N+1 : fix
+    @Query("SELECT distinct p FROM Person p left join fetch p.phones")
+    Page<Person> findAllEntitiesBy (Pageable pageable);
 }

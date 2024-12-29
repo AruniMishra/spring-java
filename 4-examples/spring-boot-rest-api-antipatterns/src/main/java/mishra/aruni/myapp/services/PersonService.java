@@ -46,10 +46,26 @@ public class PersonService {
 
 
     // fix - Loading entire entities and using only a small subset of fields
+    // ex- http://localhost:8080/api/persons?pageNo=2
     public PagedResult<PersonBasicView> getAllPersons(int pageNo) {
         Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("id").ascending());
 
         Page<PersonBasicView> personPage = personRepository.findAllBy(pageable);
+
+        return new PagedResult<>(personPage.getContent(),
+                personPage.getTotalElements(),
+                personPage.getTotalPages(),
+                personPage.getNumber() + 1);
+    }
+
+    // N+1 problem
+    public PagedResult<Person> getAllPersonsEntities(int pageNo) {
+        Pageable pageable = PageRequest.of(pageNo - 1, 10, Sort.by("id").ascending());
+
+        // Page<Person> personPage = personRepository.findAll(pageable);
+
+        // N+1 fix
+        Page<Person> personPage = personRepository.findAllEntitiesBy(pageable);
 
         return new PagedResult<>(personPage.getContent(),
                 personPage.getTotalElements(),
