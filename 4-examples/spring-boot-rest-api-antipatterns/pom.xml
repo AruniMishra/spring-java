@@ -45,7 +45,7 @@
 
 		<dependency>
 			<groupId>org.testcontainers</groupId>
-			<artifactId>mysql</artifactId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->

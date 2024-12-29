@@ -8,15 +8,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 // @SpringBootTest
 
 // fix - Using @SpringBootTest for testing slices (controller, repository)
-// @DataJpaTest
+@DataJpaTest
 
-@DataJpaTest(
-        properties = {
-                "spring.datasource.url= jdbc:mysql://localhost:3306/mishra",
-                "spring.datasource.username=root",
-                "spring.datasource.password=pass123"
-        }
-)
+// fix - test in memory db, Note: a valid Docker environment is required
+// @DataJpaTest(
+//         properties = {
+//                 "spring.test.database.replace=none",
+//                 "spring.datasource.url=jdbc:tc:postgresql:16-alpine:///testdb"
+//         }
+// )
 class PersonRepositoryTest {
     @Autowired
     private PersonRepository personRepository;
