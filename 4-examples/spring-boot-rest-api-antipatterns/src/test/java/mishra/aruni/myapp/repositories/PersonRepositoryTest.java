@@ -4,13 +4,19 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 // @SpringBootTest
+
 // fix - Using @SpringBootTest for testing slices (controller, repository)
-@DataJpaTest
+// @DataJpaTest
+
+@DataJpaTest(
+        properties = {
+                "spring.datasource.url= jdbc:mysql://localhost:3306/mishra",
+                "spring.datasource.username=root",
+                "spring.datasource.password=pass123"
+        }
+)
 class PersonRepositoryTest {
     @Autowired
     private PersonRepository personRepository;
